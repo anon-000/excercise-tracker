@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Backend for mern excercise app",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "nodemon start server.js"
   },
   "author": "anon-000",
   "license": "ISC",
