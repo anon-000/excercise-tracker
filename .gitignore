@@ -68,6 +68,7 @@ build/Release
 # Dependency directories
 /server/node_modules
 /serverjspm_packages/
+/server/.env
 
 # TypeScript v1 declaration files
 typings/
