@@ -60,7 +60,6 @@ export default class CreateExcercise extends Component{
 
     onSubmit(e){
         e.preventDefault();
-        console.log("on submit");
 
         const excercise = {
             userName: this.state.userName,
