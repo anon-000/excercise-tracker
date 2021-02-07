@@ -27,10 +27,18 @@ export default class CreateExcercise extends Component{
 
 
     componentDidMount(){
-        this.setState({
-            users : ['alexa', 'siri'],
-            userName: 'alexa',
+
+        axios.get("http://localhost:5000/users").then(res => {
+            if(res.data.length > 0){
+                this.setState({
+                    users: res.data.map(user => user.userName),
+                    userName: res.data[0].userName,
+                });
+            }
+        }).catch(err => {
+            console.log(err);
         });
+        
     }
 
     onChangeUserName(e){
