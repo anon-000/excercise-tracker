@@ -30,17 +30,28 @@ export default class EditExcercise extends Component{
 
     componentDidMount(){
 
+        axios.get("http://localhost:5000/excercises/"+this.props.match.params.id).then(res => {
+            this.setState(
+                {
+                    userName: res.data.userName,
+                    description: res.data.description,
+                    duration: res.data.duration,
+                    date: new Date(res.data.date),
+                }
+            );
+        }).catch(err => {
+            console.log(err);
+        });
+
         axios.get("http://localhost:5000/users").then(res => {
             if(res.data.length > 0){
                 this.setState({
-                    users: res.data.map(user => user.userName),
-                    userName: res.data[0].userName,
+                    users: res.data.map(user => user.userName),                
                 });
             }
         }).catch(err => {
             console.log(err);
         });
-
         
     }
 
@@ -83,7 +94,7 @@ export default class EditExcercise extends Component{
 
         console.log(excercise);
 
-        axios.post("http://localhost:5000/excercises/add", excercise)
+        axios.post("http://localhost:5000/excercises/update/"+this.props.match.params.id, excercise)
         .then( res => {
             console.log(res.data);
         })
@@ -99,7 +110,7 @@ export default class EditExcercise extends Component{
     render(){
         return (
             <div className="container">
-                <h3>Create New Excercise</h3>
+                <h3>Edit Excercise</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Username: </label>
